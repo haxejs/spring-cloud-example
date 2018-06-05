@@ -1,0 +1,30 @@
+version: '2.1'
+services:
+
+  eureka-server:
+    build: eureka-server
+    ports:
+      - 8700:8700
+
+  config-server:
+    build: config-server
+    ports:
+      - 8710:8710
+
+  user-service:
+    build: user-service
+    ports:
+      - 8720:8720
+
+  node-sidecar:
+    build: node-sidecar
+    ports:
+      - 8741:8741
+
+  book-service-by-node:
+    build: book-service-by-node
+    ports:
+      - 3000:3000
+
+  # monitoring:
+  #   build: monitoring

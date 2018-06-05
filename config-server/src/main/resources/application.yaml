@@ -1,16 +1,29 @@
 server:
   port: 8710
+
+# spring:
+#   application:
+#     name: config-server
+#   cloud:
+#     config:
+#       server:
+#         git:
+#           uri: https://github.com/marshalYuan/spring-cloud-example/
+#           searchPaths: config-repo
+#           username:
+#           password:
+
 spring:
   application:
     name: config-server
   cloud:
     config:
       server:
-        git:
-          uri: https://github.com/marshalYuan/spring-cloud-example/
-          searchPaths: config-repo
-          username:
-          password:
+        native:
+          search-locations: classpath:/shared
+  profiles:
+     active: native
+
 eureka:
   client:
     serviceUrl:
