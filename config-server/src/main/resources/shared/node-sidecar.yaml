@@ -1,11 +1,11 @@
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8700/eureka/}
+      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8700/eureka/}
 sidecar:
   port: 3000
-  home-page-uri: http://localhost:${sidecar.port}/
-  health-uri: http://localhost:${sidecar.port}/health
+  home-page-uri: http://book-service-by-node:${sidecar.port}/
+  health-uri: http://book-service-by-node:${sidecar.port}/health
 
 hystrix:
   command:
