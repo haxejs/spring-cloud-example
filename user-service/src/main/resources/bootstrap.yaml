@@ -13,7 +13,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8700/eureka/}
+      defaultZone: ${EUREKA_SERVICE_URL:http://127.0.0.1:8700/eureka/}
     registerWithEureka: true
     fetchRegistry: true
   instance:
@@ -21,7 +21,7 @@ eureka:
       instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
     hostname: localhost
     prefer-ip-address: true
-    ip-address: ${HOST_IP:127.0.0.1}
+    ip-address: "${HOST_IP:127.0.0.1}"
 
 ribbon:
   eureka:

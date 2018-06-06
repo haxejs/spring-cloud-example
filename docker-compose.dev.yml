@@ -6,8 +6,8 @@ services:
   #   ports:
   #     - 8710:8710
     #environment:
-      #- EUREKA_SERVICE_URL:
-      #- CONFIG_FILES_DIR:
+      #- EUREKA_SERVICE_URL=
+      #- CONFIG_FILES_DIR=
     # links:
     #   - eureka-server
 
@@ -23,8 +23,8 @@ services:
     links:
       - eureka-server
     environment:
-      - HOST_IP:127.0.0.1
-    #   - EUREKA_SERVICE_URL:''
+      - HOST_IP=172.17.0.1
+      - EUREKA_SERVICE_URL=http://172.17.0.1:8700/eureka/
 
   node-sidecar:
     build: node-sidecar
@@ -34,15 +34,15 @@ services:
       - eureka-server
       - book-service-by-node
     environment:
-      - HOST_IP:127.0.0.1
-    #   - EUREKA_SERVICE_URL:''
+      - HOST_IP=172.17.0.1
+      - EUREKA_SERVICE_URL=http://172.17.0.1:8700/eureka/
 
   book-service-by-node:
     build: book-service-by-node
     ports:
       - 3000:3000
     environment:
-      - HOST_IP:127.0.0.1
+      - HOST_IP=172.17.0.1
 
   # monitoring:
   #   build: monitoring
@@ -52,4 +52,4 @@ services:
   #   links:
   #     - eureka-server
     # environment:
-    #   - CONFIG_SERVER_URL:''
+    #   - CONFIG_SERVER_URL=
