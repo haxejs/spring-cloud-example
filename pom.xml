@@ -13,6 +13,7 @@
     <module>user-service</module>
     <module>node-sidecar</module>
     <module>config-server</module>
+    <module>monitoring</module>
   </modules>
 
   <parent>

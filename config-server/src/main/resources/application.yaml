@@ -20,7 +20,7 @@ spring:
     config:
       server:
         native:
-          search-locations: classpath:/shared
+          search-locations: ${CONFIG_FILES_DIR:classpath:/shared}
   profiles:
      active: native
 

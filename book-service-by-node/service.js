@@ -1,7 +1,7 @@
 const fetch = require('isomorphic-fetch')
 
 const SIDECAR = {
-    uri: 'http://localhost:8741'
+    uri: 'http://node-sidecar:8741'
 }
 
 const USER_SERVICE = 'user-service'
