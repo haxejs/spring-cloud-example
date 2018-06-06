@@ -3,19 +3,38 @@ server:
 spring:
   application:
     name: node-sidecar
-  cloud:
-    config:
-      uri: ${CONFIG_SERVER_URL:http://config-server:8710}
-      discovery:
-        enabled: true
-        serviceId: node-sidecar
+  # cloud:
+  #   config:
+  #     uri: ${CONFIG_SERVER_URL:http://config-server:8710}
+  #     discovery:
+  #       enabled: true
+  #       serviceId: node-sidecar
+
+sidecar:
+  port: 3000
+  home-page-uri: http://${HOST_IP:127.0.0.1}:${sidecar.port}/
+  health-uri: http://${HOST_IP:127.0.0.1}:${sidecar.port}/health
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8700/eureka/}
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8700/eureka/}
     registerWithEureka: true
     fetchRegistry: true
+  instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost
+    prefer-ip-address: true
+    ip-address: ${HOST_IP:127.0.0.1}
+
 ribbon:
   eureka:
     enabled: true

@@ -3,19 +3,26 @@ server:
 spring:
   application:
     name: user-service
-  cloud:
-    config:
-      uri: ${CONFIG_SERVER_URL:http://config-server:8710}
-      discovery:
-        enabled: true
-        serviceId: user-service
+  # cloud:
+  #   config:
+  #     uri: ${CONFIG_SERVER_URL:http://config-server:8710}
+  #     discovery:
+  #       enabled: true
+  #       serviceId: user-service
 
 eureka:
   client:
     serviceUrl:
-      defaultZone: ${EUREKA_SERVICE_URL:http://eureka-server:8700/eureka/}
+      defaultZone: ${EUREKA_SERVICE_URL:http://localhost:8700/eureka/}
     registerWithEureka: true
     fetchRegistry: true
+  instance:
+    metadataMap:
+      instanceId: ${spring.application.name}:${spring.application.instance_id:${random.value}}
+    hostname: localhost
+    prefer-ip-address: true
+    ip-address: ${HOST_IP:127.0.0.1}
+
 ribbon:
   eureka:
     enabled: true

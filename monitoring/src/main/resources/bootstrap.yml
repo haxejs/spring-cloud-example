@@ -1,9 +1,9 @@
 spring:
   application:
     name: monitoring
-  cloud:
-    config:
-      uri: ${CONFIG_SERVER_URL:http://config-server:8710}
+  # cloud:
+  #   config:
+  #     uri: ${CONFIG_SERVER_URL:http://localhost:8710}
       # fail-fast: true
       # password: ${CONFIG_SERVICE_PASSWORD}
       # username: user

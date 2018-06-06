@@ -1,7 +1,7 @@
 const fetch = require('isomorphic-fetch')
-
+const ip = process.env.HOST_IP || "127.0.0.1";
 const SIDECAR = {
-    uri: 'http://node-sidecar:8741'
+    uri: 'http://'+ ip +':8741'
 }
 
 const USER_SERVICE = 'user-service'

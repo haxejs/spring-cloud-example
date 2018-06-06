@@ -1,15 +1,15 @@
 version: '2.1'
 services:
 
-  config-server:
-    build: config-server
-    ports:
-      - 8710:8710
+  # config-server:
+  #   build: config-server
+  #   ports:
+  #     - 8710:8710
     #environment:
       #- EUREKA_SERVICE_URL:
       #- CONFIG_FILES_DIR:
-    links:
-      - eureka-server
+    # links:
+    #   - eureka-server
 
   eureka-server:
     build: eureka-server
@@ -21,31 +21,35 @@ services:
     ports:
       - 8720:8720
     links:
-      - config-server
-    # environment:
-    #   - CONFIG_SERVER_URL:''
+      - eureka-server
+    environment:
+      - HOST_IP:127.0.0.1
+    #   - EUREKA_SERVICE_URL:''
 
   node-sidecar:
     build: node-sidecar
     ports:
       - 8741:8741
     links:
-      - config-server
+      - eureka-server
       - book-service-by-node
-    # environment:
-    #   - CONFIG_SERVER_URL:''
+    environment:
+      - HOST_IP:127.0.0.1
+    #   - EUREKA_SERVICE_URL:''
 
   book-service-by-node:
     build: book-service-by-node
     ports:
       - 3000:3000
+    environment:
+      - HOST_IP:127.0.0.1
 
-  monitoring:
-    build: monitoring
-    ports:
-      - 8080:8080
-      - 8989:8989
-    links:
-      - config-server
+  # monitoring:
+  #   build: monitoring
+  #   ports:
+  #     - 8080:8080
+  #     - 8989:8989
+  #   links:
+  #     - eureka-server
     # environment:
     #   - CONFIG_SERVER_URL:''
